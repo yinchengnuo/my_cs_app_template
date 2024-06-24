@@ -63,7 +63,7 @@ const RefSpeechFactory = ref()
             <div class="right h100 flex1 flexc flex_fs">
                 <img class="logo" src="@/assets/login/logo.png" width="86" height="32" />
                 <div class="title flex">
-                    <a-select v-if="Store.state.app.isPackaged && Store.state.env.env.tag" :value="URL" :options="envs" style="width: 233px; margin-right: 4px" @change="switchEnv" />
+                    <a-select v-if="Store.state.app.isPackaged && Store.state.env.env.tag" :value="URL" :options="envs" style="width: 158px; margin-right: 4px" @change="switchEnv" />
                     <span v-else style="color: red; font-weight: bolder">{{ Store.state.env.env.name }}</span>
                     <span>{{ Store.state.app.appName }}</span>
                 </div>
