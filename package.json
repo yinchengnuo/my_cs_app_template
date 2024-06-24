@@ -1,0 +1,74 @@
+{
+  "name": "my_cs_app_template",
+  "version": "1.0.0",
+  "web_version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "author": "yinchengnuo",
+  "description": "牧原肉食桌面应用程序前端开发模板",
+  "scripts": {
+    "dev:bs": "vite --host",
+    "preview": "vite preview",
+    "format": "prettier --write src/",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "dev": "concurrently \"npm run dev:bs\" \"wait-on tcp:5173 && npx electron .\"",
+    "build": "vite build",
+    "build:mac": "concurrently \"npm run build && node main/build.js\"",
+    "build:win": "concurrently \"npm run build && node main/build.js\"",
+    "build:mac:dev": "concurrently \"npm run build && node main/build.js\"",
+    "build:win:dev": "concurrently \"npm run build && node main/build.js\""
+  },
+  "build": {
+    "asar": false,
+    "files": [
+      "dist/index.js",
+      "dist/env.js"
+    ],
+    "appId": "com.imuyuan.cs.template",
+    "productName": "牧原肉食CS应用开发模板",
+    "artifactName": "${productName}.${ext}",
+    "directories": {
+      "output": "build"
+    },
+    "win": {
+      "icon": "src/assets/logo.png"
+    },
+    "mac": {
+      "icon": "src/assets/logo.png"
+    },
+    "publish": {
+      "url": "",
+      "provider": "generic"
+    }
+  },
+  "devDependencies": {
+    "@rushstack/eslint-patch": "1.8.0",
+    "@surely-vue/table": "4.3.4",
+    "@vitejs/plugin-vue": "5.0.4",
+    "@vitejs/plugin-vue-jsx": "3.1.0",
+    "@vue/eslint-config-prettier": "9.0.0",
+    "ant-design-vue": "4.2.3",
+    "concurrently": "8.2.2",
+    "crypto-js": "4.2.0",
+    "dayjs": "1.11.11",
+    "electron": "31.0.2",
+    "electron-builder": "24.13.3",
+    "eslint": "8.57.0",
+    "eslint-plugin-vue": "9.23.0",
+    "less": "4.2.0",
+    "nprogress": "0.2.0",
+    "prettier": "3.2.5",
+    "sass": "1.77.4",
+    "sortablejs": "1.15.2",
+    "vite": "5.2.8",
+    "vue": "3.4.21",
+    "vue-router": "4.3.0",
+    "vuex": "4.0.2",
+    "wait-on": "7.2.0"
+  },
+  "dependencies": {
+    "electron-edge-js": "30.0.2",
+    "electron-updater": "6.2.1"
+  }
+}

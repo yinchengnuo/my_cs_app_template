@@ -1,0 +1,55 @@
+.__header_dropdown {
+    width: 24px;
+    height: 24px;
+    background: url('@/assets/components/tableItems.png') no-repeat center;
+    background-size: cover;
+    &:hover {
+        background-image: url('@/assets/components/tableItemsActive.png');
+    }
+}
+:deep(.__header_dropdown_content) {
+    background: #ffffff;
+    border: 1px solid #dbe3e5;
+    border-radius: 8px;
+    padding-bottom: 10px;
+    transform: translate(-10px);
+    .__header_dropdown_content_header {
+        padding: 13px;
+        margin-top: 10px;
+        position: relative;
+        box-sizing: border-box;
+        &::after,
+        &::before {
+            left: 16px;
+            top: -15px;
+            content: '';
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            background: #fff;
+            transform: rotateZ(45deg);
+        }
+        &::before {
+            z-index: 1;
+            border-top: 1px solid #dbe3e5;
+            border-left: 1px solid #dbe3e5;
+        }
+    }
+    .__header_dropdown_checkbox {
+        display: flex;
+        flex-wrap: wrap;
+        user-select: none;
+        max-height: 346px;
+        flex-direction: row;
+        writing-mode: vertical-lr;
+
+        .ant-checkbox-wrapper {
+            width: 198px;
+            height: 48px;
+            margin-left: 0;
+            padding: 13px;
+            box-sizing: border-box;
+            writing-mode: horizontal-tb;
+        }
+    }
+}
