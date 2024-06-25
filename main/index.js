@@ -11,7 +11,7 @@ const URL = envs.find((e) => e.tag === ENV).url
 app.commandLine.appendSwitch('disable-web-security')
 app.commandLine.appendSwitch('ignore-certificate-errors')
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = undefined
-const name = envs.find((e) => e.tag === ENV).name + 'appName'
+const name = envs.find((e) => e.tag === ENV).name + app.isPackaged ? 'appName' : ''
 app.setName(name)
 const gotTheLock = app.isPackaged ? app.requestSingleInstanceLock({}) : true
 if (gotTheLock) {
