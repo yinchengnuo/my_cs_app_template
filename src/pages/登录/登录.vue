@@ -51,6 +51,10 @@ const open = ref(undefined)
 const RefSpeechUsername = ref()
 const RefSpeechPassword = ref()
 const RefSpeechFactory = ref()
+
+const testPrint = () => {
+    alert('testPrint')
+}
 </script>
 
 <template>
@@ -99,6 +103,8 @@ const RefSpeechFactory = ref()
                     </div>
                     <a-button class="w100" type="primary" @click="login">登录</a-button>
                 </a-form>
+                <br>
+                <a-button class="w100" type="primary" @click="testPrint">打印测试</a-button>
             </div>
         </div>
     </div>
