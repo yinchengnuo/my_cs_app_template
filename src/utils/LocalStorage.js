@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 const fs = !!window.require && window.require('fs')
 const path = !!window.require && window.require('path')
 const raw = reactive({})
-const DATAPATH = !!window.require && path.join(__dirname, '../../../LocalStorage.json')
+const DATAPATH = !!window.require && path.join(process.resourcesPath, './LocalStorage.json')
 try {
     const data = JSON.parse(fs.readFileSync(DATAPATH).toString())
     localStorage.clear()

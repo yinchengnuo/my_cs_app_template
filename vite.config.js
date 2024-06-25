@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import PackageJson from './package.json'
 import { execSync } from 'child_process'
 import { replaceNull } from './src/utils'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -47,8 +48,7 @@ export default defineConfig({
                         //
                     }
                     fs.mkdirSync(path.resolve('./dist'))
-                    fs.writeFileSync(path.resolve('./dist/index.js'), fs.readFileSync(path.resolve('./main/index.js')).toString())
-                    fs.writeFileSync(path.resolve('./dist/env.js'), fs.readFileSync(path.resolve('./main/env.js')).toString())
+                    PackageJson.build.files.forEach(file => fs.copyFileSync(path.resolve(file.replace('dist', 'main')), path.resolve(file)))
                 })
             }
         },
