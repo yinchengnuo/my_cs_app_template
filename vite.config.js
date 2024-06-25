@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import PackageJson from './package.json'
+import Package from './package.json'
 import { execSync } from 'child_process'
 import { replaceNull } from './src/utils'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -44,11 +44,9 @@ export default defineConfig({
                 server.httpServer?.on('listening', async () => {
                     try {
                         execSync(`${process.platform === 'win32' ? 'rmdir /s /q' : 'rm -rf'} ${path.resolve('./dist')}`)
-                    } catch (e) {
-                        //
-                    }
+                    } catch (_) {}
                     fs.mkdirSync(path.resolve('./dist'))
-                    PackageJson.build.files.forEach(file => fs.copyFileSync(path.resolve(file.replace('dist', 'main')), path.resolve(file)))
+                    Package.build.files.forEach((file) => fs.copyFileSync(path.resolve(file.replace('dist', 'main')), path.resolve(file)))
                 })
             }
         },

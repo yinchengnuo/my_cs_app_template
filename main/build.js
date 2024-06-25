@@ -17,16 +17,13 @@ Package.build.publish.url = buildOption.url
 Package.build.appId = `${Package.build.appId}.${buildOption.tag}`
 Package.build.productName = `${buildOption.name}${Package.build.productName}`
 fs.writeFileSync(path.resolve('./dist/index.js'), INDEXJS.replace('appName', Package.build.productName.replace(buildOption.name, '')).replace('local', env))
+Package.build.files.slice(2).forEach((file) => fs.copyFileSync(path.resolve(file.replace('dist', 'main')), path.resolve(file)))
 
-if (buildOption.tag === 'dev') {
-    Package.build.productName = Package.build.productName.replace(buildOption.name, '集成测试环境')
-}
+if (buildOption.tag === 'dev') Package.build.productName = Package.build.productName.replace(buildOption.name, '集成测试环境')
 
 try {
     execSync(`${process.platform === 'win32' ? 'rmdir /s /q' : 'rm -rf'} ${path.resolve('./build')}`)
-} catch (error) {
-    //
-}
+} catch (_) {}
 
 fs.mkdirSync(path.resolve('./build'))
 fs.writeFileSync(
@@ -41,10 +38,6 @@ fs.writeFileSync(
     !macroend`
 )
 
-if (target === 'mac' || target === 'all') {
-    await build({ config: Package.build, targets: Platform.MAC.createTarget() })
-}
+if (target === 'mac') await build({ config: Package.build, targets: Platform.MAC.createTarget() })
 
-if (target === 'win' || target === 'all') {
-    await build({ config: Package.build, targets: Platform.WINDOWS.createTarget() })
-}
+if (target === 'win') await build({ config: Package.build, targets: Platform.WINDOWS.createTarget() })

@@ -22,6 +22,7 @@ module.exports = {
                 code: 200
             }
         ],
+        'no-empty': 'off',
         'vue/no-dupe-keys': 'off',
         'no-constant-condition': 'off',
         'no-async-promise-executor': 'off',

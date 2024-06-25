@@ -22,9 +22,9 @@
   "build": {
     "asar": false,
     "files": [
-      "dist/tsclibnet.dll",
+      "dist/env.js",
       "dist/index.js",
-      "dist/env.js"
+      "dist/tsclibnet.dll"
     ],
     "appId": "com.imuyuan.cs.template",
     "productName": "牧原肉食CS应用开发模板",

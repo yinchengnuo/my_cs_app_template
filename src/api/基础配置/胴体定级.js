@@ -11,4 +11,3 @@ export const apiEditLevel = (data) => api.post('/my-slaughter-workshop-product-c
 export const apiGetEditLevelById = (data) => api.post('/my-slaughter-workshop-product-carcass-line/gradeInfo/queryGradingWeightDetail', data, { loading: true })
 
 export const apiDeleteLevelById = (data) => api.post('/my-slaughter-workshop-product-carcass-line/gradeInfo/deleteByIds', data, { loading: true })
-

@@ -2,8 +2,6 @@ import SSTable from './index.vue'
 import STable from '@surely-vue/table'
 import '@surely-vue/table/dist/index.less'
 
-
-
 export const numberToLocaleString = (number) => number.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })
 
 export const getElementById = (id) => document.getElementById(id)

@@ -3,7 +3,7 @@ import CryptoJS from 'crypto-js'
 const off = '3aW%^&Fd'
 const password = '%SaFz$^p'
 
-function createKey (password) {
+function createKey(password) {
     if (password == null) {
         password = ''
     }
@@ -18,7 +18,7 @@ function createKey (password) {
     return CryptoJS.enc.Utf8.parse(s)
 }
 
-function createIV (iv) {
+function createIV(iv) {
     if (iv == null) {
         iv = ''
     }

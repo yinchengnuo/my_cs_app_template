@@ -160,7 +160,7 @@ export default {
             this.accountList = []
             const data = await getAccountList({
                 account: this.params.jobNo,
-                projectCode: Store.state.app.name,
+                projectCode: Store.state.app.name
             })
             setTimeout(hide, 0)
             if (typeof data === 'string' || typeof data === 'number') {

@@ -9,7 +9,7 @@ export default (component) => {
         const container = el.getElementsByClassName('ant-spin-container')[0] || _
         const footer = container.getElementsByClassName('surely-table-footer')[0] || _
         const pagination = container.getElementsByClassName('surely-table-pagination')[0] || _
-        const paginationStyle = pagination ? getComputedStyle(pagination) : ({})
+        const paginationStyle = pagination ? getComputedStyle(pagination) : {}
         height.value = el.offsetHeight - footer.offsetHeight - pagination.offsetHeight - +paginationStyle.marginTop.replace('px', '') - +paginationStyle.marginBottom.replace('px', '') - 1
         _.remove()
     }

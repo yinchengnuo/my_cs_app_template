@@ -9,10 +9,10 @@ import { DownOutlined } from '@ant-design/icons-vue'
 const Route = useRoute()
 
 const activeKey = computed({
-    get () {
+    get() {
         return Route.path
     },
-    set (path) {
+    set(path) {
         Router.replace(path)
     }
 })
@@ -24,13 +24,7 @@ onMounted(() => {
 
 <template>
     <div class="tab_bar w100">
-        <a-tabs
-            v-model:activeKey="activeKey"
-            hideAdd
-            size="small"
-            type="editable-card"
-            @edit="path => Store.commit('tab/DEL_TAB', { path })"
-        >
+        <a-tabs v-model:activeKey="activeKey" hideAdd size="small" type="editable-card" @edit="(path) => Store.commit('tab/DEL_TAB', { path })">
             <a-tab-pane v-for="item in Store.state.tab" :key="item" :tab="item.split('/').at(-1)" />
             <template #rightExtra>
                 <a-dropdown>

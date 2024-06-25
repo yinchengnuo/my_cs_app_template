@@ -1,18 +1,18 @@
 import { Modal } from 'ant-design-vue'
 
-export function uuid () {
+export function uuid() {
     const tempUrl = URL.createObjectURL(new Blob())
     const uuid = tempUrl.toString()
     URL.revokeObjectURL(tempUrl)
     return uuid.slice(-36)
 }
-export function replaceNull (string, payloads, split) {
+export function replaceNull(string, payloads, split) {
     payloads.forEach((payload) => {
         string = string.replace(payload, '')
     })
     return typeof split === 'string' ? string.split(split) : string
 }
-export function makeEnum (arr, label, value, key) {
+export function makeEnum(arr, label, value, key) {
     arr = JSON.parse(JSON.stringify(arr))
     const map = (arr) => {
         arr.forEach((item) => {
@@ -24,7 +24,7 @@ export function makeEnum (arr, label, value, key) {
     }
     map(arr)
     return new Proxy(arr, {
-        get (target, key) {
+        get(target, key) {
             if (key === 'label') {
                 return (value) => arr.find((e) => e.value === value)?.label
             }
@@ -35,13 +35,13 @@ export function makeEnum (arr, label, value, key) {
         }
     })
 }
-export function thousandthDot (text) {
+export function thousandthDot(text) {
     if ((typeof text === 'string' && text.trim() === '') || text === null || text === undefined) {
         return ''
     }
     return isNaN(Number(text.toString())) ? text : Number(text).toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 2 })
 }
-export function getPathByIdInTree (arr, id) {
+export function getPathByIdInTree(arr, id) {
     const result = []
     const find = (arr, path, deep) => {
         for (let i = 0; i < arr.length; i++) {
@@ -61,11 +61,11 @@ export function getPathByIdInTree (arr, id) {
     find(arr, [], 0)
     return result
 }
-export function getObjectByKeyInTree (arr, key, value) {
+export function getObjectByKeyInTree(arr, key, value) {
     let result = null
     const find = (arr) => {
         for (let i = 0; i < arr.length; i++) {
-            if ((arr[i])[value ? key : 'id'] === (value || key) && result === null) {
+            if (arr[i][value ? key : 'id'] === (value || key) && result === null) {
                 result = arr[i]
             } else {
                 if (arr[i].children && arr[i].children?.length) {
@@ -87,7 +87,7 @@ export const modalConfirmSure = (val) => {
         item.modal.destroy()
     }
 }
-export function modalConfirm (content, config) {
+export function modalConfirm(content, config) {
     return new Promise((resolve) => {
         confirming++
         modalConfirmList.push({
@@ -118,7 +118,7 @@ export const getQueryByName = (url, name) => {
     const query = url.match(reg)
     return query ? query[1].trim() : ''
 }
-export function isAllEqual (array) {
+export function isAllEqual(array) {
     if (array.length > 0) {
         return !array.some(function (item) {
             return item !== array[0]
@@ -128,4 +128,5 @@ export function isAllEqual (array) {
     }
 }
 // eslint-disable-next-line max-len
-export const uploadFileTypes = '.png, .jpg, .jpeg, .bmp, .gif, .svg, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .html, .txt, .md, .csv, .mp3, .wav, .wma, .midi, .flac, .mp4, .avi, .mkv, .nov, .flv, .wmv, .rmvb, .3gp'
+export const uploadFileTypes =
+    '.png, .jpg, .jpeg, .bmp, .gif, .svg, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .pdf, .html, .txt, .md, .csv, .mp3, .wav, .wma, .midi, .flac, .mp4, .avi, .mkv, .nov, .flv, .wmv, .rmvb, .3gp'

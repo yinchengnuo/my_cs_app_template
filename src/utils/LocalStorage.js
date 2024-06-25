@@ -21,14 +21,14 @@ try {
 
 export default {
     raw,
-    getItem (key) {
+    getItem(key) {
         try {
             return JSON.parse(localStorage.getItem(key) || '')
         } catch (error) {
             return localStorage.getItem(key)
         }
     },
-    setItem (key, value) {
+    setItem(key, value) {
         if (typeof value === 'object') {
             localStorage.setItem(key, JSON.stringify(value))
             raw[key] = JSON.parse(JSON.stringify(value))
@@ -38,12 +38,12 @@ export default {
         }
         !!window.require && fs.writeFileSync(DATAPATH, JSON.stringify(raw, null, 4))
     },
-    removeItem (key) {
+    removeItem(key) {
         delete raw[key]
         localStorage.removeItem(key)
         !!window.require && fs.writeFileSync(DATAPATH, JSON.stringify(raw, null, 4))
     },
-    clear () {
+    clear() {
         localStorage.clear()
         for (const key in raw) {
             if (key !== 'login' && key !== 'zoom') {
