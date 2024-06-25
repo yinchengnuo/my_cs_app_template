@@ -52,11 +52,6 @@ const open = ref(undefined)
 const RefSpeechUsername = ref()
 const RefSpeechPassword = ref()
 const RefSpeechFactory = ref()
-
-const testPrint = () => {
-    // alert('testPrint')
-    console.log(DllPrint())
-}
 </script>
 
 <template>
@@ -106,7 +101,7 @@ const testPrint = () => {
                     <a-button class="w100" type="primary" @click="login">登录</a-button>
                 </a-form>
                 <br />
-                <a-button class="w100" type="primary" size="large" danger @click="testPrint">打印测试</a-button>
+                <a-button class="w100" type="primary" size="large" danger @click="DllPrint">打印测试</a-button>
             </div>
         </div>
     </div>
