@@ -6,22 +6,19 @@ if (process.platform === 'win32') {
 }
 
 export default () => {
-    // require('electron').ipcRenderer.invoke('EVAL', `console.log(1, EDGE)`)
     if (process.platform === 'win32') {
         const assemblyFile = require('path').resolve(Store.state.app.isPackage ? './resources/app/dist/tsclibnet.dll' : './dist/tsclibnet.dll')
-        // if () {}
-        // console.log(require)mes
         message.info(assemblyFile)
         require('electron').ipcRenderer.invoke(
             'EVAL',
             `
-            let openport = edge.func({ assemblyFile, typeName, methodName: 'openport' })
-            let sendcommand = edge.func({ assemblyFile, typeName, methodName: 'sendcommand' })
-            let clearbuffer = edge.func({ assemblyFile, typeName, methodName: 'clearbuffer' })
-            let printlabel = edge.func({ assemblyFile, typeName, methodName: 'printlabel' })
-            let closeport = edge.func({ assemblyFile, typeName, methodName: 'closeport' })
-            let windowsfont = edge.func({ assemblyFile, typeName, methodName: 'windowsfont' })
-            let setup = edge.func({ assemblyFile, typeName, methodName: 'setup' })
+            let openport = EDGE.func({ assemblyFile: '${assemblyFile}', typeName: 'TSCSDK.node_usb', methodName: 'openport' })
+            let sendcommand = EDGE.func({ assemblyFile: '${assemblyFile}', typeName: 'TSCSDK.node_usb', methodName: 'sendcommand' })
+            let clearbuffer = EDGE.func({ assemblyFile: '${assemblyFile}', typeName: 'TSCSDK.node_usb', methodName: 'clearbuffer' })
+            let printlabel = EDGE.func({ assemblyFile: '${assemblyFile}', typeName: 'TSCSDK.node_usb', methodName: 'printlabel' })
+            let closeport = EDGE.func({ assemblyFile: '${assemblyFile}', typeName: 'TSCSDK.node_usb', methodName: 'closeport' })
+            let windowsfont = EDGE.func({ assemblyFile: '${assemblyFile}', typeName: 'TSCSDK.node_usb', methodName: 'windowsfont' })
+            let setup = EDGE.func({ assemblyFile: '${assemblyFile}', typeName: 'TSCSDK.node_usb', methodName: 'setup' })
 
             openport('USB')
             setup({ width: '80', height: '45.61', speed: '4.9', density: '8', sensor: '1', vertical: '4', offset: '0' })
