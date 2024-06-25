@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Store from '@/store'
 import Router from '@/router'
+import DllPrint from '@/utils/DllPrint'
 import { makeEnum, modalConfirm } from '@/utils'
 
 const refForm = ref()
@@ -53,7 +54,8 @@ const RefSpeechPassword = ref()
 const RefSpeechFactory = ref()
 
 const testPrint = () => {
-    alert('testPrint')
+    // alert('testPrint')
+    console.log(DllPrint)
 }
 </script>
 

@@ -57,22 +57,23 @@ const app = {
     }
 }
 
-window.addEventListener(
-    'load',
-    () =>
-        setTimeout(async () => {
-            Store.commit('app/ZOOM_APP', { zoom: +LocalStorage.getItem('zoom') || 0 })
-            while (true) {
-                if (document.body.offsetWidth >= 1680) {
-                    break
-                } else {
-                    Store.commit('app/ZOOM_APP', { zoom: Store.state.app.zoom - 0.1 })
+LocalStorage.getItem('zoom') === null &&
+    window.addEventListener(
+        'load',
+        () =>
+            setTimeout(async () => {
+                Store.commit('app/ZOOM_APP', { zoom: +LocalStorage.getItem('zoom') || 0 })
+                while (true) {
+                    if (document.body.offsetWidth >= 1680) {
+                        break
+                    } else {
+                        Store.commit('app/ZOOM_APP', { zoom: Store.state.app.zoom - 0.1 })
+                    }
+                    await new Promise((resolve) => setTimeout(resolve))
                 }
-                await new Promise((resolve) => setTimeout(resolve))
-            }
-        }),
-    { once: true }
-)
+            }),
+        { once: true }
+    )
 
 nextTick(() => Store.dispatch('app/getIsPackaged'))
 
@@ -83,9 +84,10 @@ try {
             new Set(
                 Object.values(require('os').networkInterfaces())
                     .flat()
+                    .filter((e) => e.mac !== '00:00:00:00:00:00')
                     .map((e) => e.mac)
             )
-        ).join(' / ')
+        ).join(':')
     )
     nextTick(() => {
         let name = ''
@@ -105,9 +107,9 @@ try {
                 })
         })
         if (name) {
-            console.log(`当前IP为 ${ips.join(' / ')} 可能所在厂区：${name}`)
+            console.log(`当前IP为 ${ips.join('..')} 可能所在厂区：${name}`)
         } else {
-            console.log(`当前IP为 ${ips.join(' / ')} 不在厂区`)
+            console.log(`当前IP为 ${ips.join('..')} 不在厂区`)
         }
     })
 } catch (error) {
