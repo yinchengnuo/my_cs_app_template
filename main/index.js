@@ -1,10 +1,9 @@
 import envs from './env.js'
 import electronUpdater from 'electron-updater'
-import { app, BrowserWindow, ipcMain, dialog, Menu, globalShortcut, powerSaveBlocker } from 'electron'
+import { app, BrowserWindow, ipcMain, dialog, powerSaveBlocker } from 'electron'
 
 let updater
 const ENV = 'local'
-// Menu.setApplicationMenu(null)
 const { autoUpdater } = electronUpdater
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 const URL = envs.find((e) => e.tag === ENV).url
@@ -67,10 +66,7 @@ if (gotTheLock) {
                 select('')
             }
         })
-        // window.on('blur', () => globalShortcut.unregisterAll())
-        // window.on('focus', () => globalShortcut.register('CommandOrControl+R', () => window.webContents.reload()))
     })
-    // app.on('will-quit', () => globalShortcut.unregisterAll())
     app.on('window-all-closed', () => app.quit())
 } else {
     app.quit()
